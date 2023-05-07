@@ -23,6 +23,7 @@ function trayectoria() {
     var anguloRadianes = anguloLanzamiento * (Math.PI / 180);
 
     var imgs = area.querySelectorAll("img");
+
     for (var i = 0; i < imgs.length; i++) {
         area.removeChild(imgs[i]);
     }
@@ -36,8 +37,8 @@ function trayectoria() {
     tiempoTotal = (tiempoSubida * 2).toFixed(2);
 
     // Cálculo de la distancia horizontal máxima y altura máxima
-    distanciaHorizontalMaxima = (velocidadInicialX * tiempoTotal).toFixed(2);
-    alturaMaxima = ((Math.pow(velocidadInicialY, 2) / 2) * gravedad).toFixed(2);
+    distanciaHorizontalMaxima = ((Math.pow(velocidadInicial, 2) * Math.sin(2 * anguloRadianes)) / gravedad).toFixed(2);
+    alturaMaxima = ((Math.pow(velocidadInicial, 2) * Math.pow(Math.sin(anguloRadianes), 2)) / (2 * gravedad)).toFixed(2);
     
     // Generar las imágenes de la pelota para cada instante de tiempo
     for (tiempoTranscurrido = 0; tiempoTranscurrido <= tiempoTotal; tiempoTranscurrido += 0.5) {
@@ -59,15 +60,15 @@ function trayectoria() {
     var info = document.getElementById("info");
     info.className = "card1";
     info.innerHTML = `
-        Vi = ${velocidadInicial}<br>
-        Theta = ${anguloLanzamiento.toFixed(2)}<br>
+        Vi = ${velocidadInicial} m/s<br>
+        Theta = ${anguloLanzamiento.toFixed(2)}°<br>
         Theta en Radianes = ${anguloRadianes.toFixed(2)} rad<br>
-        Vix = ${velocidadInicialX}<br>
-        Viy = ${velocidadInicialY}<br>
-        Ts = ${tiempoSubida}<br>
-        Tt = ${tiempoTotal}<br>
-        Xmax = ${distanciaHorizontalMaxima}<br>
-        Ymax = ${alturaMaxima}<br>
+        Vix = ${velocidadInicialX} m/s<br>
+        Viy = ${velocidadInicialY} m/s<br>
+        Ts = ${tiempoSubida} s<br>
+        Tt = ${tiempoTotal} s<br>
+        Xmax = ${distanciaHorizontalMaxima} m<br>
+        Ymax = ${alturaMaxima} m<br>
     `;
 }
 
@@ -92,8 +93,8 @@ function iniciar() {
     tiempoTotal = (tiempoSubida * 2).toFixed(2);
 
     // Calcula la altura máxima alcanzada y la distancia horizontal máxima
-    distanciaHorizontalMaxima = (velocidadInicialX * tiempoTotal).toFixed(2);
-    alturaMaxima = ((Math.pow(velocidadInicialY, 2) / 2) * gravedad).toFixed(2);
+    distanciaHorizontalMaxima = ((Math.pow(velocidadInicial, 2) * Math.sin(2 * anguloRadianes)) / gravedad).toFixed(2);
+    alturaMaxima = ((Math.pow(velocidadInicial, 2) * Math.pow(Math.sin(anguloRadianes), 2)) / (2 * gravedad)).toFixed(2);
 
     // Reinicia el tiempo transcurrido a cero
     tiempoTranscurrido = 0;
@@ -112,15 +113,15 @@ function iniciar() {
     var info = document.getElementById("info");
     info.className = "card1";
     info.innerHTML = `
-        Vi = ${velocidadInicial}<br>
-        Theta = ${anguloLanzamiento.toFixed(2)}<br>
+        Vi = ${velocidadInicial} m/s<br>
+        Theta = ${anguloLanzamiento.toFixed(2)}°<br>
         Theta en Radianes = ${anguloRadianes.toFixed(2)} rad<br>
-        Vix = ${velocidadInicialX}<br>
-        Viy = ${velocidadInicialY}<br>
-        Ts = ${tiempoSubida}<br>
-        Tt = ${tiempoTotal}<br>
-        Xmax = ${distanciaHorizontalMaxima}<br>
-        Ymax = ${alturaMaxima}<br>
+        Vix = ${velocidadInicialX} m/s<br>
+        Viy = ${velocidadInicialY} m/s<br>
+        Ts = ${tiempoSubida} s<br>
+        Tt = ${tiempoTotal} s<br>
+        Xmax = ${distanciaHorizontalMaxima} m<br>
+        Ymax = ${alturaMaxima} m<br>
     `;
     
 }
