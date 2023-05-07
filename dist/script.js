@@ -11,13 +11,14 @@ var distanciaHorizontalMaxima;
 var alturaMaxima;
 var posTop;
 
-function resolve() {
-    var velocidadInicial = document.getElementById("vi").value;
-    var anguloLanzamiento = document.getElementById("theta").value;
+
+function trayectoria() {
+    var velocidadInicial = parseFloat(document.getElementById("vi").value);
+    var anguloLanzamiento = parseFloat(document.getElementById("theta").value);
     let hr = document.getElementsByTagName('hr'); 
     var area = document.getElementById("area");
-    gravedad = document.getElementById("gravedad").value;
-    anguloLanzamiento = anguloLanzamiento * (Math.PI / 180);
+    gravedad = parseFloat(document.getElementById("gravedad").value);
+    var anguloRadianes = anguloLanzamiento * (Math.PI / 180);
 
     var imgs = area.querySelectorAll("img");
     for (var i = 0; i < imgs.length; i++) {
@@ -25,16 +26,16 @@ function resolve() {
     }
 
     // Cálculo de las componentes de la velocidad inicial en X y Y
-    velocidadInicialX = velocidadInicial * Math.cos(anguloLanzamiento).toFixed(3);
-    velocidadInicialY = velocidadInicial * Math.sin(anguloLanzamiento).toFixed(3);
+    velocidadInicialX = velocidadInicial * Math.cos(anguloRadianes).toFixed(2);
+    velocidadInicialY = velocidadInicial * Math.sin(anguloRadianes).toFixed(2);
 
     // Cálculo del tiempo de subida y tiempo total de vuelo
-    tiempoSubida = (velocidadInicialY / gravedad).toFixed(3);
-    tiempoTotal = (tiempoSubida * 2).toFixed(3);
+    tiempoSubida = (velocidadInicialY / gravedad).toFixed(2);
+    tiempoTotal = (tiempoSubida * 2).toFixed(2);
 
     // Cálculo de la distancia horizontal máxima y altura máxima
-    distanciaHorizontalMaxima = (velocidadInicialX * tiempoTotal).toFixed(3);
-    alturaMaxima = ((Math.pow(velocidadInicialY, 2) / 2) * gravedad).toFixed(3);
+    distanciaHorizontalMaxima = (velocidadInicialX * tiempoTotal).toFixed(2);
+    alturaMaxima = ((Math.pow(velocidadInicialY, 2) / 2) * gravedad).toFixed(2);
     
     // Generar las imágenes de la pelota para cada instante de tiempo
     for (tiempoTranscurrido = 0; tiempoTranscurrido <= tiempoTotal; tiempoTranscurrido += 0.5) {
@@ -53,10 +54,23 @@ function resolve() {
 
         area.appendChild(pelota);
     }    
+    var info = document.getElementById("info");
+    info.className = "card1";
+    info.innerHTML = `
+        Vi = ${velocidadInicial}<br>
+        Theta = ${anguloLanzamiento.toFixed(2)}<br>
+        Theta en Radianes = ${anguloRadianes.toFixed(2)} rad<br>
+        Vix = ${velocidadInicialX}<br>
+        Viy = ${velocidadInicialY}<br>
+        Ts = ${tiempoSubida}<br>
+        Tt = ${tiempoTotal}<br>
+        Xmax = ${distanciaHorizontalMaxima}<br>
+        Ymax = ${alturaMaxima}<br>
+    `;
 }
 
 
-function startmove() {    
+function iniciar() {    
 
     // Obtiene los valores de entrada del usuario
     var velocidadInicial = parseFloat(document.getElementById("vi").value);
@@ -68,22 +82,22 @@ function startmove() {
     var anguloRadianes = anguloLanzamiento * (Math.PI / 180);
 
     // Calcula las componentes de la velocidad inicial en X y Y
-    velocidadInicialX = (velocidadInicial * Math.cos(anguloRadianes)).toFixed(3);
-    velocidadInicialY = (velocidadInicial * Math.sin(anguloRadianes)).toFixed(3);
+    velocidadInicialX = (velocidadInicial * Math.cos(anguloRadianes)).toFixed(2);
+    velocidadInicialY = (velocidadInicial * Math.sin(anguloRadianes)).toFixed(2);
 
     // Calcula el tiempo de subida y el tiempo total de vuelo
-    tiempoSubida = (velocidadInicialY / gravedad).toFixed(3);
-    tiempoTotal = (tiempoSubida * 2).toFixed(3);
+    tiempoSubida = (velocidadInicialY / gravedad).toFixed(2);
+    tiempoTotal = (tiempoSubida * 2).toFixed(2);
 
     // Calcula la altura máxima alcanzada y la distancia horizontal máxima
-    distanciaHorizontalMaxima = (velocidadInicialX * tiempoTotal).toFixed(3);
-    alturaMaxima = ((Math.pow(velocidadInicialY, 2) / 2) * gravedad).toFixed(3);
+    distanciaHorizontalMaxima = (velocidadInicialX * tiempoTotal).toFixed(2);
+    alturaMaxima = ((Math.pow(velocidadInicialY, 2) / 2) * gravedad).toFixed(2);
 
     // Reinicia el tiempo transcurrido a cero
     tiempoTranscurrido = 0;
 
     // Crea el intervalo de tiempo para actualizar la posición de la pelota
-    intervaloMovimiento = setInterval(move, 10);
+    intervaloMovimiento = setInterval(mover, 10);
 
     // Limpia cualquier imagen anterior
     var area = document.getElementById("area");
@@ -97,7 +111,8 @@ function startmove() {
     info.className = "card1";
     info.innerHTML = `
         Vi = ${velocidadInicial}<br>
-        Theta = ${anguloLanzamiento.toFixed(3)} rad<br>
+        Theta = ${anguloLanzamiento.toFixed(2)}<br>
+        Theta en Radianes = ${anguloRadianes.toFixed(2)} rad<br>
         Vix = ${velocidadInicialX}<br>
         Viy = ${velocidadInicialY}<br>
         Ts = ${tiempoSubida}<br>
@@ -107,7 +122,7 @@ function startmove() {
     `;
 }
 
-function move() {
+function mover() {
     // Obtiene los elementos relevantes de la página
     var hr = document.getElementsByTagName("hr");
     var pelota = document.getElementById("ball");
@@ -123,23 +138,11 @@ function move() {
         pelota.style.top = (hr[0].offsetTop - 447 + posicionVertical) + "px";
         
     }else{
-        resolve();
+        trayectoria();
         clearInterval(intervaloMovimiento);
     }    
 
     // Incrementa el tiempo transcurrido
     tiempoTranscurrido += 0.1;
-    
-}
-
-function positiontop() {
-
-    posTop = Math.round(Math.random() * (315))
-    if (posTop > 315) {
-        posTop = 315
-    }
-    if (posTop < 50) {
-        posTop = 50
-    }
     
 }
