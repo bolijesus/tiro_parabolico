@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimiento parabolico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="card">
+        <div class="text">Vi:<input class="text1" type="number" value="100" min="20" max="200" id="vi"></div>
+        <div class="text">Theta:<input class="text1" type="number" value="45" id="theta"></div>
+        <div class="text">
+            Gravedad:<input class="text1" type="number" value="9.8" min="0" max="200" id="gravedad">
+        </div>
+        <div style="display: flex;">
+            <div><button onclick="startmove()">Mover</button></div>
+            <div><button onclick="resolve()">Trayectoria</button></div>
+        </div>
+        <div id="area"></div>
+        <div>
+            <img id="ball"
+                src="https://png.pngtree.com/png-clipart/20221008/original/pngtree-soccer-ball-png-image_8666713.png"
+                alt="">
+            <hr style="margin-top: 15px; width: 98%; height: 12px; background-color:slategray; border-color: black;">
+        </div>
+    </div>
+    <div class="card1" id="info">
+
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

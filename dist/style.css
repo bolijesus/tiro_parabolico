@@ -1,0 +1,77 @@
+body {
+    background-image: url('https://img.freepik.com/vector-premium/parque-ciudad-color-plano-zona-recreativa-ciudad-plaza-pueblo-descanso-al-aire-libre-calles-casas-paisaje-dibujos-animados-2d-arboles-bancos-estanque-puente-fondo_151150-2928.jpg?w=2000');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#ball {
+    bottom: 20px;
+    position: absolute;
+    width: 50px;
+    left: -1px;
+}
+
+hr {
+    position: absolute;
+    bottom: 0px;
+}
+
+.dog {
+    position: absolute;
+    width: 200px;
+    left: 500px;
+    top: 315px;
+}
+.text{
+    color: black;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border-style: ridge;
+    border-radius: 30px;
+    border-width: 3px;
+    background: #fff;}
+div{
+    padding: 5px;
+}
+.text1{
+    border-radius: 10px;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    left: 130px;
+}
+button{
+    border-radius: 25px;
+    background: black;
+    color: white;
+}
+.card1{
+    left: 1030px;
+    width: 300px;
+    top: 7px;
+    height: 197px;
+    border-style: ridge;
+    position: absolute;
+    border-radius: 30px;
+    border-width: 3px;
+    background: #fff;
+    color: black;
+    font-family: cursive;
+    padding: 10px;
+}
+.card2{
+    left: 600px;
+    width: 100px;
+    height: 100px;
+    top: 7px;
+    border-style: ridge;
+    position: absolute;
+    border-radius: 30px;
+    border-width: 3px;;
+    background: #fff;
+    color: black;
+    font-family: cursive;
+    padding: 10px;
+}
