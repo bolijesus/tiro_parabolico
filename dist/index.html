@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body onload="positiontop()">
     <div class="card">
         <div class="text">Vi:<input onchange="trayectoria()" class="text1" type="number" value="100" min="0" max="200" id="vi"></div>
         <div class="text">Theta:<input onchange="trayectoria()" class="text1" type="number"  min="0" value="45" id="theta"></div>
@@ -26,6 +26,9 @@
                 src="https://png.pngtree.com/png-clipart/20221008/original/pngtree-soccer-ball-png-image_8666713.png"
                 alt="">
             <hr style="margin-top: 15px; width: 98%; height: 12px; background-color:slategray; border-color: black;">
+        </div>
+        <div>
+            <img class="hueco" id="objetivo" src="https://cdn-icons-png.flaticon.com/512/595/595608.png">
         </div>
     </div>
     <div class="card1" id="info">

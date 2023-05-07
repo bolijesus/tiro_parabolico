@@ -16,11 +16,11 @@ hr {
     bottom: 0px;
 }
 
-.dog {
+.hueco {
     position: absolute;
-    width: 200px;
+    width: 50px;
     left: 500px;
-    top: 315px;
+    bottom: 0px;
 }
 .text{
     color: black;

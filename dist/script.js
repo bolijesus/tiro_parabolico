@@ -9,7 +9,9 @@ var intervaloMovimiento;
 var gravedad = 9.8;
 var distanciaHorizontalMaxima;
 var alturaMaxima;
-var posTop;
+
+var posicionHueco;
+var anchoHueco;
 
 
 function trayectoria() {
@@ -47,8 +49,8 @@ function trayectoria() {
         pelota.src = 'https://static.vecteezy.com/system/resources/previews/016/314/339/non_2x/red-circle-red-dot-icon-free-png.png';
         pelota.style.width = 48 + "px";
         pelota.style.position = "absolute";
-        posTop = hr[0].offsetTop - 447 + posicionVertical;
-        pelota.style.top = posTop + "px";
+        let posicionHuecoHTML = hr[0].offsetTop - 447 + posicionVertical;
+        pelota.style.top = posicionHuecoHTML + "px";
         pelota.style.left = posicionHorizontal + "px";
         pelota.title = `velx:${velocidadInicialX},vely:${velocidadY},vel:${velocidad}`;
 
@@ -120,6 +122,7 @@ function iniciar() {
         Xmax = ${distanciaHorizontalMaxima}<br>
         Ymax = ${alturaMaxima}<br>
     `;
+    
 }
 
 function mover() {
@@ -135,14 +138,34 @@ function mover() {
 
         // Actualiza la posición de la pelota en la página
         pelota.style.left = posicionHorizontal + "px";
-        pelota.style.top = (hr[0].offsetTop - 447 + posicionVertical) + "px";
+        pelota.style.top = (hr[0].offsetTop - 447 + posicionVertical) + "px";       
         
     }else{
         trayectoria();
+        if ((posicionHorizontal+ anchoHueco) >= posicionHueco && posicionHorizontal <= posicionHueco) {
+            alert('Ganaste')            
+        }
+        
+    console.log(posicionHorizontal, posicionHueco, anchoHueco );
         clearInterval(intervaloMovimiento);
     }    
 
     // Incrementa el tiempo transcurrido
     tiempoTranscurrido += 0.1;
     
+}
+
+function positiontop() {
+    var objetivo = document.getElementById('objetivo');
+    var anchoPantalla = window.innerWidth;
+    anchoHueco = objetivo.width;
+    posicionHueco = Math.round(Math.random() * (anchoPantalla - 50)) + 50;
+
+    if (posicionHueco > anchoPantalla) {
+        posicionHueco = anchoPantalla-50
+    }
+    if (posicionHueco < 50) {
+        posicionHueco = 50
+    }
+    objetivo.style.left = posicionHueco + 'px';
 }
