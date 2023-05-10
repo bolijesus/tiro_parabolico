@@ -37,23 +37,23 @@ function trayectoria() {
     tiempoTotal = (tiempoSubida * 2).toFixed(2);
 
     // Cálculo de la distancia horizontal máxima y altura máxima
-    distanciaHorizontalMaxima = ((Math.pow(velocidadInicial, 2) * Math.sin(2 * anguloRadianes)) / gravedad).toFixed(2);
-    alturaMaxima = ((Math.pow(velocidadInicial, 2) * Math.pow(Math.sin(anguloRadianes), 2)) / (2 * gravedad)).toFixed(2);
+    distanciaHorizontalMaxima = velocidadInicialX*tiempoTotal;
+    alturaMaxima = (Math.pow(velocidadInicialY, 2)/ (2 * gravedad)).toFixed(2);
     
     // Generar las imágenes de la pelota para cada instante de tiempo
     for (tiempoTranscurrido = 0; tiempoTranscurrido <= tiempoTotal; tiempoTranscurrido += 0.5) {
         posicionHorizontal = velocidadInicialX * tiempoTranscurrido;
         posicionVertical = 400 - (velocidadInicialY * tiempoTranscurrido - (gravedad * Math.pow(tiempoTranscurrido, 2)) / 2);
         var pelota = document.createElement("img");
-        var velocidadY = Math.abs(velocidadInicialY - gravedad * tiempoTranscurrido);
-        var velocidad = Math.sqrt(Math.pow(velocidadInicialX, 2) + Math.pow(velocidadY, 2));
+        var velocidadY = velocidadInicialY - gravedad * tiempoTranscurrido;
+        var velocidadX = velocidadInicialX;
         pelota.src = 'https://static.vecteezy.com/system/resources/previews/016/314/339/non_2x/red-circle-red-dot-icon-free-png.png';
         pelota.style.width = 48 + "px";
         pelota.style.position = "absolute";
         let posicionHuecoHTML = hr[0].offsetTop - 447 + posicionVertical;
         pelota.style.top = posicionHuecoHTML + "px";
         pelota.style.left = posicionHorizontal + "px";
-        pelota.title = `velx:${velocidadInicialX},vely:${velocidadY},vel:${velocidad}`;
+        pelota.title = `velx:${velocidadInicialX},vely:${velocidadY},vel:${velocidadX}`;
 
         area.appendChild(pelota);
     }    
@@ -93,8 +93,8 @@ function iniciar() {
     tiempoTotal = (tiempoSubida * 2).toFixed(2);
 
     // Calcula la altura máxima alcanzada y la distancia horizontal máxima
-    distanciaHorizontalMaxima = ((Math.pow(velocidadInicial, 2) * Math.sin(2 * anguloRadianes)) / gravedad).toFixed(2);
-    alturaMaxima = ((Math.pow(velocidadInicial, 2) * Math.pow(Math.sin(anguloRadianes), 2)) / (2 * gravedad)).toFixed(2);
+    distanciaHorizontalMaxima = velocidadInicialX*tiempoTotal;
+    alturaMaxima = (Math.pow(velocidadInicialY, 2)/ (2 * gravedad)).toFixed(2);
 
     // Reinicia el tiempo transcurrido a cero
     tiempoTranscurrido = 0;
@@ -147,7 +147,6 @@ function mover() {
             alert('Ganaste')            
         }
         
-    console.log(posicionHorizontal, posicionHueco, anchoHueco );
         clearInterval(intervaloMovimiento);
     }    
 
